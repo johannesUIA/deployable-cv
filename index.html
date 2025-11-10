@@ -7,36 +7,43 @@
     <link href="./styles.css" rel="stylesheet" />
   </head>
   <body class="bg-slate-950 text-slate-50">
-    <!-- header will be injected -->
-    <div data-include="src/components/header.html"></div>
+    <!-- Snow canvas behind everything -->
+    <canvas
+      id="snow-canvas"
+      class="fixed inset-0 -z-10 pointer-events-none"
+      aria-hidden="true"
+    ></canvas>
 
-    <main id="top" class="max-w-5xl mx-auto px-4 py-10 space-y-16">
-      <!-- sections injected as components for maintainability -->
-      <div data-include="src/components/about.html"></div>
-      <div data-include="src/components/contact.html"></div>
-      <div data-include="src/components/projects.html"></div>
-      <div data-include="src/components/experience.html"></div>
-      <div data-include="src/components/skills.html"></div>
-    </main>
+    <!-- Your actual app, above the snow -->
+    <div id="app" class="relative z-10">
+      <!-- header -->
+      <div data-include="src/components/header.html"></div>
 
+      <!-- main content -->
+      <main id="top" class="max-w-5xl mx-auto px-4 py-10 space-y-16">
+        <div data-include="src/components/about.html"></div>
+        <div data-include="src/components/contact.html"></div>
+        <div data-include="src/components/projects.html"></div>
+        <div data-include="src/components/experience.html"></div>
+        <div data-include="src/components/skills.html"></div>
+      </main>
 
-   <!-- Back to top button -->
-<button
-  id="backToTop"
-  title="Go to top"
-  class="hidden fixed bottom-6 right-6 z-50 cursor-pointer p-2 rounded-full shadow-lg bg-transparent"
->
-  <img
-    src="./media/arrow-up-icon.png"
-    alt="Go up"
-    class="h-10 w-10"
-  />
-</button>
+      <!-- footer -->
+      <div data-include="src/components/footer.html"></div>
 
-
-
-
-    <div data-include="src/components/footer.html"></div>
+      <!-- Back to top button -->
+      <button
+        id="backToTop"
+        title="Go to top"
+        class="hidden fixed bottom-6 right-6 z-50 cursor-pointer p-2 rounded-full shadow-lg bg-transparent"
+      >
+        <img
+          src="./media/arrow-up-icon.png"
+          alt="Go up"
+          class="h-10 w-10"
+        />
+      </button>
+    </div>
 
     <script type="module" src="src/component-loader.js"></script>
 
@@ -103,5 +110,6 @@
     });
   });
 </script>
+     <script src="src/snow.js"></script>
   </body>
 </html>
