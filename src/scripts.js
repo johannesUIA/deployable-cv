@@ -1,8 +1,8 @@
 // src/scripts.js
-// Centralized scripts entry. Imports component-loader (which runs itself)
-// and registers site behaviors and the snow canvas animation.
+// Centralized scripts entry.
 
 import loadIncludes from './component-loader.js';
+import { initTimeline } from './timeline.js';
 
 // Re-initialize behaviour after components (header, footer, sections) are loaded
 window.addEventListener('components:loaded', () => {
@@ -22,7 +22,6 @@ window.addEventListener('components:loaded', () => {
   // 3) Back-to-top button
   const backBtn = document.getElementById('backToTop');
   if (backBtn) {
-    // Show/hide on scroll
     window.addEventListener('scroll', () => {
       if (window.pageYOffset > 200) {
         backBtn.classList.remove('hidden');
@@ -31,7 +30,6 @@ window.addEventListener('components:loaded', () => {
       }
     });
 
-    // Smooth scroll to top when clicked
     backBtn.addEventListener('click', () => {
       window.scrollTo({
         top: 0,
@@ -53,7 +51,6 @@ window.addEventListener('components:loaded', () => {
 
       event.preventDefault();
 
-      // Offset a little for sticky header (adjust 80 if needed)
       const headerOffset = 80;
       const elementPosition = targetElement.offsetTop;
       const offsetPosition = elementPosition - headerOffset;
@@ -64,10 +61,12 @@ window.addEventListener('components:loaded', () => {
       });
     });
   });
+
+  // 5) Build the interactive timeline AFTER components are in the DOM
+  initTimeline();
 });
 
-// Snow animation (migrated from src/snow.js)
-// Keeps its own DOMContentLoaded listener like before
+// Snow animation (unchanged)
 document.addEventListener('DOMContentLoaded', () => {
   const canvas = document.getElementById('snow-canvas');
   if (!canvas) return;
@@ -77,7 +76,6 @@ document.addEventListener('DOMContentLoaded', () => {
   let height = window.innerHeight;
   let dpr = window.devicePixelRatio || 1;
 
-  // number of flakes scales a bit with screen size
   const baseCount = 120;
   let flakeCount = Math.floor(
     baseCount * (Math.min(width * height, 1920 * 1080) / (1920 * 1080))
@@ -108,12 +106,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function createFlake(startAbove = false) {
-    const r = rand(1, 3); // radius
+    const r = rand(1, 3);
     return {
       x: rand(0, width),
       y: startAbove ? rand(-height, 0) : rand(0, height),
       r,
-      speed: rand(0.5, 1.2) * (r / 2) * 0.6, // slowed down ~40%
+      speed: rand(0.5, 1.2) * (r / 2) * 0.6,
       drift: rand(-0.3, 0.3),
       phase: rand(0, Math.PI * 2),
       alpha: rand(0.35, 0.9),
@@ -133,12 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let i = 0; i < flakes.length; i++) {
       const f = flakes[i];
 
-      // Wobble + drift
       f.phase += 0.01;
       f.x += f.drift + Math.sin(f.phase) * 0.3;
       f.y += f.speed;
 
-      // Recycle flake when out of view
       if (f.y - f.r > height) {
         flakes[i] = createFlake(true);
       }
@@ -156,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
     requestAnimationFrame(updateAndDraw);
   }
 
-  // Handle resize
   window.addEventListener('resize', resize);
   resize();
   requestAnimationFrame(updateAndDraw);
