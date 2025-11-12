@@ -1,13 +1,52 @@
-<article class="space-y-2">
-  <h3 class="text-base md:text-lg font-semibold text-slate-100">
-    Roombooking – Motel Booking System
-  </h3>
-  <p class="text-xs text-slate-400">
-    PHP · TailwindCSS · MySQL
-  </p>
-  <p class="text-sm text-slate-200 leading-relaxed">
-    Booking system for a small motel with room types, availability rules and
-    simple admin features. Good exercise in end-to-end CRUD flows and interface
-    design.
-  </p>
+<article class="isolate pt-6 md:pt-8 lg:pt-10">
+  <div class="grid gap-y-10 gap-x-12 lg:grid-cols-2 items-start">
+    <!-- Copy -->
+    <div class="relative z-10 space-y-5 max-w-prose">
+      <h3 class="text-3xl font-extrabold tracking-tight text-white">
+        Roombooking — Motel Booking System
+      </h3>
+
+      <span class="text-[13px] font-medium text-white/80 px-3 py-1 rounded-full ring-1 ring-white/15 bg-white/10 inline-block">
+        Aug 2024 – 2024
+      </span>
+
+      <p class="text-[15px] leading-7 text-white/90">
+        A PHP-based booking system for a 25-room motel with multiple room types,
+        occupancy limits and admin tooling. Built core booking flows, availability
+        rules and a clean UI to manage rooms and reservations.
+      </p>
+
+      <div>
+        <h4 class="text-sm font-semibold text-white/90 mb-2">Highlights</h4>
+        <ul class="space-y-2 text-[15px] leading-7 text-white/90 list-disc pl-5 marker:text-emerald-400/80">
+          <li>Guest/admin registration with role-based actions</li>
+          <li>Room types (single, double, junior suite) with occupant limits</li>
+          <li>Search by check-in/out date, adults and children</li>
+          <li>Admin tools to manage room types and mark rooms unavailable</li>
+          <li>Optional preferences (floor level, near elevator) + loyalty hooks</li>
+        </ul>
+      </div>
+
+      <p class="text-[15px] leading-7 text-white/90">
+        Focus areas: server-side PHP and form handling, MySQL schema design,
+        readable functions/arrays, and usability for both motel owners and guests.
+        Designed with the needs of frequent and occasional guests in mind. Code is structured for extension —
+      e.g., stored preferences and stay history to support receipts and loyalty features later.
+      </p>
+    </div>
+
+    <!-- Image -->
+    <div class="relative z-10">
+      <figure class="group w-full max-w-2xl mx-auto">
+        <div class="overflow-hidden rounded-2xl ring-1 ring-white/10 bg-white shadow-[0_10px_40px_-10px_rgba(0,0,0,0.5)]">
+          <img
+            src="./media/php.png"
+            alt="Roombooking — system overview / UI snapshot"
+            class="block w-full aspect-[16/9] object-contain bg-white transition-transform duration-300 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
+        </div>
+      </figure>
+    </div>
+  </div>
 </article>

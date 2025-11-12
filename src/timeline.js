@@ -5,19 +5,19 @@ const timelineProjects = [
   {
     id: "exitnode",
     yearLabel: "2025 · Bachelor project",
-    sideLabel: "2025 · BACHELOR PROJECT",
+    sideLabel: "Jan 2025",
     partial: "src/components/projects/exitnode.html",
   },
   {
     id: "roombooking",
     yearLabel: "2024 · Side project",
-    sideLabel: "2024 · SIDE PROJECT",
+    sideLabel: "AUG 2024",
     partial: "src/components/projects/roombooking.html",
   },
   {
-    id: "nested",
+    id: "nøsted",
     yearLabel: "Aug 2023 · 3rd semester project",
-    sideLabel: "AUG 2023 · 3RD SEMESTER",
+    sideLabel: "AUG 2023",
     partial: "src/components/projects/nøsted.html",
   },
 ];
@@ -27,21 +27,36 @@ export async function initTimeline() {
   const root = document.getElementById("timeline-root");
   if (!root) return; // projects section not on this page
 
-  // Vertical line
+  // Vertical line — render as a fixed element flush to the viewport left edge
   const lineWrapper = document.createElement("div");
-  lineWrapper.className = "absolute left-3 top-0 bottom-0";
+  // Make the vertical line fixed and span the full viewport height so it's
+  // always visible at the outer left (like the inspirational image).
+  lineWrapper.className = "fixed left-14 top-0 bottom-0 z-20";
   lineWrapper.innerHTML =
-    '<div class="h-full w-1.5 bg-white/95 shadow-sm"></div>';
-  root.appendChild(lineWrapper);
+    '<div class="h-full w-[1.5px] bg-white shadow-sm"></div>';
+  lineWrapper.style.pointerEvents = "none";
+  // start hidden until the timeline section enters the viewport
+  lineWrapper.style.opacity = "0";
+  lineWrapper.style.transition = "opacity 220ms ease";
+  document.body.appendChild(lineWrapper);
+  // ensure the inner line is explicitly white and visible
+  const _lineInner = lineWrapper.querySelector("div");
+  if (_lineInner) {
+    _lineInner.style.backgroundColor = "#ffffff";
+    _lineInner.style.height = "100vh";
+  }
 
-  // Tracking dot (we move this with JS)
+  // Tracking dot (we move this with JS) — render fixed so it can align with the fixed line
   const tracker = document.createElement("div");
   tracker.id = "timeline-tracker";
   tracker.className =
-    "absolute left-3 -ml-[11px] w-6 h-6 rounded-full border-2 border-emerald-400 bg-slate-950 flex items-center justify-center z-40";
+    "fixed left-14 -ml-[11px] w-6 h-6 rounded-full border-2 border-emerald-400 bg-slate-950 flex items-center justify-center z-40";
   tracker.innerHTML =
     '<div class="w-2 h-2 rounded-full bg-emerald-400"></div>';
-  root.appendChild(tracker);
+  tracker.style.pointerEvents = "none";
+  tracker.style.opacity = "0";
+  tracker.style.transition = "opacity 220ms ease";
+  document.body.appendChild(tracker);
 
   // List container
   const list = document.createElement("ol");
@@ -57,14 +72,13 @@ export async function initTimeline() {
     const isNested = p.id === "nested"; // special-case Nøsted bullet offset
 
     li.innerHTML = `
-      <span class="timeline-bullet absolute -left-[1.08rem] ${
-        isNested ? "top-[4.5rem]" : "top-[0.65rem]"
-      } block w-3 h-3 rounded-full bg-slate-500"></span>
+      <span class="timeline-bullet absolute -left-[1.08rem] top-1/2 -translate-y-1/2 block w-3 h-3 rounded-full bg-slate-500"></span>
 
-      <p class="hidden md:block absolute -left-48 top-2 text-[11px] font-semibold tracking-[0.25em] text-slate-400 uppercase">
+
+      <p class="hidden md:block absolute left-4 top-2 text-sm font-extrabold tracking-[0.25em] text-white uppercase">
         ${p.sideLabel}
       </p>
-      <p class="md:hidden text-[11px] font-semibold tracking-[0.25em] text-slate-400 uppercase mb-1">
+      <p class="md:hidden text-[11px] font-extrabold tracking-[0.25em] text-white uppercase mb-1">
         ${p.yearLabel}
       </p>
 
@@ -85,6 +99,42 @@ export async function initTimeline() {
   // === Scroll tracking for the green dot ===
   const bullets = list.querySelectorAll(".timeline-bullet");
 
+  // Align timeline bullets horizontally to match the fixed line position.
+  function alignBulletsToLine() {
+    const lineInner = lineWrapper.querySelector("div");
+    if (!lineInner) return;
+    const lineRect = lineInner.getBoundingClientRect();
+    const lineCenterX = lineRect.left + lineRect.width / 2;
+
+    bullets.forEach((b) => {
+      const li = b.closest("li");
+      if (!li) return;
+      const liRect = li.getBoundingClientRect();
+      const bRect = b.getBoundingClientRect();
+      const bCenterY = bRect.top + bRect.height / 2;
+      // Compute left offset inside the li so the bullet centers on the fixed line
+      const leftInLi = lineCenterX - liRect.left - b.offsetWidth / 2;
+      b.style.left = `${leftInLi}px`;
+      // ensure bullet remains absolutely positioned relative to li
+      b.style.position = "absolute";
+      // Move the desktop side label to the left of the line as well
+      const desktopLabel = li.querySelector('p.hidden');
+      if (desktopLabel) {
+        const gap = 24; // px gap between label and line
+        const labelWidth = desktopLabel.offsetWidth || 0;
+        const leftForLabel = lineCenterX + gap - liRect.left;
+        desktopLabel.style.left = `${leftForLabel}px`;
+        desktopLabel.style.position = "absolute";
+        desktopLabel.style.textAlign = "left";
+
+        // vertically center the label to the bullet/point
+        const labelHeight = desktopLabel.offsetHeight || 0;
+        const topForLabel = bCenterY - liRect.top - labelHeight / 2;
+        desktopLabel.style.top = `${topForLabel}px`;
+      }
+    });
+  }
+
   function updateTrackerPosition() {
     if (!bullets.length) return;
 
@@ -104,17 +154,47 @@ export async function initTimeline() {
 
     if (!closest) return;
 
-    const rootRect = root.getBoundingClientRect();
     const bulletRect = closest.getBoundingClientRect();
     const bulletCenterY = bulletRect.top + bulletRect.height / 2;
 
-    // Position tracker so its center lines up with bullet center,
-    // relative to the top of #timeline-root
-    const offset = bulletCenterY - rootRect.top;
-    tracker.style.top = `${offset - 12}px`; // 12px = half of tracker’s 24px height
+    // Tracker is fixed, so set top to the bullet center in viewport coordinates
+    tracker.style.top = `${bulletCenterY - 12}px`; // 12px = half of tracker’s 24px height
   }
 
+  // Initial alignment and tracker position
+  alignBulletsToLine();
+  updateTrackerPosition();
+  // Show the fixed line & tracker when the ABOUT section is out of view.
+  // If #about is not present, fall back to observing the timeline root.
+  const aboutEl = document.getElementById("history");
+  const visibilityTarget = aboutEl || root;
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const e = entries[0];
+      // When the observed element is NOT intersecting the viewport,
+      // reveal the timeline; hide it again when the element is visible.
+      if (e && !e.isIntersecting) {
+        lineWrapper.style.opacity = "1";
+        tracker.style.opacity = "1";
+        alignBulletsToLine();
+        updateTrackerPosition();
+      } else {
+        lineWrapper.style.opacity = "0";
+        tracker.style.opacity = "0";
+      }
+    },
+    { root: null, threshold: 0 }
+  );
+
+  observer.observe(visibilityTarget);
+
+  // Recompute on resize (root position/size may change)
+  window.addEventListener("resize", () => {
+    alignBulletsToLine();
+    updateTrackerPosition();
+  });
+
+  // Update tracker while scrolling (bullets move in viewport)
   window.addEventListener("scroll", updateTrackerPosition, { passive: true });
-  window.addEventListener("resize", updateTrackerPosition);
-  updateTrackerPosition(); // initial position
 }
