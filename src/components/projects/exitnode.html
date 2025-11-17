@@ -1,15 +1,137 @@
-<article class="space-y-2">
-  <h3 class="text-base md:text-lg font-semibold text-slate-100">
-    ExitNode – Crisis Management Platform
-  </h3>
-  <p class="text-xs text-slate-400">
-    Python Flask · Azure SQL · Docker · IoT
-  </p>
-  <p class="text-sm text-slate-200 leading-relaxed">
-    Web application and IoT solution for crisis management, developed with CIEM
-    at UiA. I worked on backend APIs, database design, dashboards and Docker
-    deployment.
-  </p>
+<article
+  class="relative overflow-hidden rounded-3xl bg-transparent p-6 sm:p-7 lg:p-9 shadow-2xl"
+>
+  <!-- soft glow in the corner -->
+  <div class="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full bg-cyan-500/10 blur-3xl"></div>
+
+  <!-- Header -->
+  <header class="relative space-y-2">
+    <div>
+      <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-slate-50">
+        ExitNode – Crisis Management Platform
+      </h3>
+      <p class="mt-2 text-sm text-slate-400">
+        Bachelorprosjekt · våren 2025 · i samarbeid med CIEM (UiA)
+      </p>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <div class="relative mt-8 space-y-10 text-base leading-relaxed text-slate-200">
+    <!-- Block 1 -->
+    <div class="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)] md:items-center md:gap-8">
+      <div class="space-y-3">
+        <p>
+          ExitNode var bachelorprosjektet vårt våren 2025, utviklet i samarbeid med
+          CIEM (Centre for Integrated Emergency Management) ved UiA. Vi laget en
+          digital løsning for å registrere, spore og dele informasjon om evakuerte
+          under krisesituasjoner — et moderne alternativ til penn-og-papir.
+        </p>
+        <p>
+          Målet var å gi mottakssentre en strukturert digital registrering med én gang
+          folk ankommer, og å sørge for at kommunens kriseledelse alltid har oppdatert
+          oversikt over status, posisjon og gjenforeninger.
+        </p>
+      </div>
+
+      <figure class="overflow-hidden rounded-3xl border border-cyan-400/30 bg-slate-900/70 shadow-lg shadow-cyan-500/10">
+        <img
+          src="./media/exitnode.png"
+          alt="ExitNode UI – hovedskjerm"
+          class="h-52 w-full object-cover transition-transform duration-300 hover:scale-[1.04]"
+        />
+        <figcaption class="px-5 py-3 text-sm text-slate-300">
+          Operatørens dashboard med live status for evakuerte.
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- Block 2 (image between paragraphs) -->
+    <div class="flex flex-col gap-6 md:grid md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.2fr)] md:items-center md:gap-10">
+      <figure class="order-none overflow-hidden rounded-3xl border border-slate-700/70 bg-slate-900/80 shadow-lg shadow-slate-900/40 md:order-2">
+        <img
+          src="./media/azuredev.png"
+          alt="Azure DevOps pipeline"
+          class="h-52 w-full object-cover transition-transform duration-300 hover:scale-[1.04]"
+        />
+      </figure>
+
+      <div class="space-y-3 md:order-1">
+        <p>
+          Teknisk er løsningen bygget som en Python/Flask-webapp med Azure SQL som trygg
+          lagring for person- og hendelsesdata. Vi integrerte også IoT-enheter (Raspberry
+          Pi/Arduino) for å demonstrere hvordan sensorer i felt kan sende inn status direkte.
+        </p>
+        <p>
+          Samspillet mellom webapplikasjonen, databasen og IoT-strømmer gjør at
+          beredskapsaktører kan filtrere, søke og følge hendelser i sanntid – også på tvers
+          av lokasjoner.
+        </p>
+      </div>
+    </div>
+
+    <!-- Block 3: stacked visuals -->
+    <div class="space-y-6">
+      <div class="space-y-4">
+        <p>
+          Mitt ansvar omfattet backend-APIer, databaseskjema, dashboards og Docker-deploy
+          (Azure Web Apps + Container Registry). Jeg designet datamodellen slik at
+          evakuerte, pårørende og hendelser kunne kobles og oppdateres uten konflikt.
+        </p>
+        <p>
+          Resultatet var raskere registrering, færre manuelle feil og bedre beslutnings-
+          støtte for kriseledelsen – støttet av tydelige oversikter og søkbare loggvisninger.
+        </p>
+      </div>
+
+      <figure>
+        <img
+          src="./media/devices.png"
+          alt="ExitNode på flere enheter"
+          class="w-full object-contain"
+        />
+      </figure>
+
+      <figure>
+        <img
+          src="./media/hendelser.png"
+          alt="Hendelseslogg i ExitNode"
+          class="w-full object-contain"
+        />
+      </figure>
+    </div>
+
+    <!-- Tech list moved to bottom -->
+    <section class="space-y-3 rounded-2xl border border-emerald-500/30 bg-slate-900/70 p-5 text-sm shadow-inner shadow-emerald-500/5">
+      <p class="text-sm font-semibold uppercase tracking-wide text-emerald-400">
+        Teknologier &amp; rammeverk
+      </p>
+      <ul class="space-y-2 text-slate-200">
+        <li class="flex items-start gap-2">
+          <span class="mt-0.5 text-emerald-400">✓</span>
+          <span>Python &amp; Flask backend</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-0.5 text-emerald-400">✓</span>
+          <span>Flask Blueprints (modulær arkitektur)</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-0.5 text-emerald-400">✓</span>
+          <span>Jinja2 templating for UI</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-0.5 text-emerald-400">✓</span>
+          <span>Azure SQL (datastruktur &amp; queries)</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-0.5 text-emerald-400">✓</span>
+          <span>Leaflet kart for live sporing</span>
+        </li>
+        <li class="flex items-start gap-2">
+          <span class="mt-0.5 text-emerald-400">✓</span>
+          <span>Tailwind CSS (responsivt grensesnitt)</span>
+        </li>
+      </ul>
+    </section>
+  </div>
 </article>
-
-
