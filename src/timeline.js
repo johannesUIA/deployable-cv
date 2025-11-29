@@ -15,6 +15,12 @@ const timelineProjects = [
     partial: "src/components/projects/roombooking.html",
   },
   {
+    id: "unn",
+    yearLabel: "Jul–Aug 2024 · Summer job",
+    sideLabel: "JUL 2024",
+    partial: "src/components/projects/unn.html",
+  },
+  {
     id: "nøsted",
     yearLabel: "Aug 2023 · 3rd semester project",
     sideLabel: "AUG 2023",
