@@ -3,6 +3,12 @@
 // Data for your projects on the timeline
 const timelineProjects = [
   {
+    id: "github-stats",
+    yearLabel: "2025 · Learning cadence",
+    sideLabel: "NOW",
+    partial: "src/components/projects/github-stats.html",
+  },
+  {
     id: "exitnode",
     yearLabel: "2025 · Bachelor project",
     sideLabel: "Jan 2025",
