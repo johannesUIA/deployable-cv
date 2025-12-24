@@ -1,5 +1,6 @@
-# Lage portofolio
-Lage cv med portofolio. Tilslutt er ideen å ta i bruk GitHub Actions for å innøve CI/CL.
+# portofolio
+This HTML site is my portfolio for projects and work experience. The repository also uses GitHub Actions as a CI/CD pipeline to build and publish the site.
+
 
 ## Media and components
 
@@ -63,3 +64,13 @@ cmd /c "npx tailwindcss -i ./src/input.css -o ./styles.css --minify"
 - `'tailwindcss' is not recognized`: run `npm install` first to download dependencies.
 - No `styles.css`: ensure the build command finished without errors and that you have write permissions in the repo folder.
 
+---
+
+## macOS setup (recommended)
+
+### 1) Install Node.js 18+
+
+**Option A: Homebrew (recommended)**
+```bash
+brew update
+brew install node@18

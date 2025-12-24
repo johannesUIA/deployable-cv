@@ -22,9 +22,15 @@ const timelineProjects = [
   },
   {
     id: "unn",
-    yearLabel: "Jul–Aug 2024 · Summer job",
-    sideLabel: "JUL 2024",
+    yearLabel: "2024-2025 · Summer job",
+    sideLabel: "JAN 2024",
     partial: "src/components/projects/unn.html",
+  },
+  {
+    id: "nito",
+    yearLabel: "2024 · NITO deputy chair",
+    sideLabel: "JAN 2024",
+    partial: "src/components/projects/nito.html",
   },
   {
     id: "nøsted",
