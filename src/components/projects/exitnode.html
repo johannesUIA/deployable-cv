@@ -11,7 +11,7 @@
         ExitNode – Crisis Management Platform
       </h3>
       <p class="mt-2 text-sm text-slate-400">
-        Bachelorprosjekt · våren 2025 · i samarbeid med CIEM (UiA)
+        Bachelor project · Spring 2025 · in collaboration with CIEM (UiA)
       </p>
     </div>
   </header>
@@ -22,26 +22,26 @@
     <div class="flex flex-col gap-4 md:grid md:grid-cols-[minmax(0,1.25fr)_minmax(0,0.9fr)] md:items-center md:gap-8">
       <div class="space-y-3">
         <p>
-          ExitNode var bachelorprosjektet vårt våren 2025, utviklet i samarbeid med
-          CIEM (Centre for Integrated Emergency Management) ved UiA. Vi laget en
-          digital løsning for å registrere, spore og dele informasjon om evakuerte
-          under krisesituasjoner — et moderne alternativ til penn-og-papir.
+          ExitNode was our Spring 2025 bachelor project, developed with CIEM (Centre for
+          Integrated Emergency Management) at the University of Agder. We built a digital
+          solution that registers, tracks, and shares information about evacuees during
+          crises — a modern alternative to pen and paper.
         </p>
         <p>
-          Målet var å gi mottakssentre en strukturert digital registrering med én gang
-          folk ankommer, og å sørge for at kommunens kriseledelse alltid har oppdatert
-          oversikt over status, posisjon og gjenforeninger.
+          The goal was to give reception centers a structured digital intake the moment
+          people arrive, and to keep municipal crisis management updated on status,
+          location, and reunifications in real time.
         </p>
       </div>
 
       <figure class="overflow-hidden rounded-3xl border border-cyan-400/30 bg-slate-900/70 shadow-lg shadow-cyan-500/10">
         <img
           src="./media/exitnode.png"
-          alt="ExitNode UI – hovedskjerm"
+          alt="ExitNode UI – main screen"
           class="h-52 w-full object-cover transition-transform duration-300 hover:scale-[1.04]"
         />
         <figcaption class="px-5 py-3 text-sm text-slate-300">
-          Operatørens dashboard med live status for evakuerte.
+          Operator dashboard showing live evacuee status.
         </figcaption>
       </figure>
     </div>
@@ -58,14 +58,14 @@
 
       <div class="space-y-3 md:order-1">
         <p>
-          Teknisk er løsningen bygget som en Python/Flask-webapp med Azure SQL som trygg
-          lagring for person- og hendelsesdata. Vi integrerte også IoT-enheter (Raspberry
-          Pi/Arduino) for å demonstrere hvordan sensorer i felt kan sende inn status direkte.
+          Technically, the solution is a Python/Flask web app with Azure SQL providing
+          secure storage for personal and incident data. We also integrated IoT devices
+          (Raspberry Pi/Arduino) to show how field sensors can report status directly.
         </p>
         <p>
-          Samspillet mellom webapplikasjonen, databasen og IoT-strømmer gjør at
-          beredskapsaktører kan filtrere, søke og følge hendelser i sanntid – også på tvers
-          av lokasjoner.
+          The interplay between the web application, database, and IoT streams lets
+          preparedness teams filter, search, and follow events in real time — even across
+          multiple sites.
         </p>
       </div>
     </div>
@@ -74,20 +74,20 @@
     <div class="space-y-6">
       <div class="space-y-4">
         <p>
-          Mitt ansvar omfattet backend-APIer, databaseskjema, dashboards og Docker-deploy
-          (Azure Web Apps + Container Registry). Jeg designet datamodellen slik at
-          evakuerte, pårørende og hendelser kunne kobles og oppdateres uten konflikt.
+          My responsibilities covered backend APIs, database schema, dashboards, and Docker
+          deployment (Azure Web Apps + Container Registry). I designed the data model so
+          evacuees, relatives, and incidents could be linked and updated without conflicts.
         </p>
         <p>
-          Resultatet var raskere registrering, færre manuelle feil og bedre beslutnings-
-          støtte for kriseledelsen – støttet av tydelige oversikter og søkbare loggvisninger.
+          The result was faster registration, fewer manual errors, and far better decision
+          support for crisis leadership — backed by clear overviews and searchable logs.
         </p>
       </div>
 
       <figure>
         <img
           src="./media/devices.png"
-          alt="ExitNode på flere enheter"
+          alt="ExitNode across devices"
           class="w-full object-contain"
         />
       </figure>
@@ -95,7 +95,7 @@
       <figure>
         <img
           src="./media/hendelser.png"
-          alt="Hendelseslogg i ExitNode"
+          alt="Incident log inside ExitNode"
           class="w-full object-contain"
         />
       </figure>
@@ -104,7 +104,7 @@
     <!-- Tech list moved to bottom -->
     <section class="space-y-3 rounded-2xl border border-emerald-500/30 bg-slate-900/70 p-5 text-sm shadow-inner shadow-emerald-500/5">
       <p class="text-sm font-semibold uppercase tracking-wide text-emerald-400">
-        Teknologier &amp; rammeverk
+        Technologies &amp; frameworks
       </p>
       <ul class="space-y-2 text-slate-200">
         <li class="flex items-start gap-2">
@@ -113,7 +113,7 @@
         </li>
         <li class="flex items-start gap-2">
           <span class="mt-0.5 text-emerald-400">✓</span>
-          <span>Flask Blueprints (modulær arkitektur)</span>
+          <span>Flask Blueprints (modular architecture)</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="mt-0.5 text-emerald-400">✓</span>
@@ -121,15 +121,15 @@
         </li>
         <li class="flex items-start gap-2">
           <span class="mt-0.5 text-emerald-400">✓</span>
-          <span>Azure SQL (datastruktur &amp; queries)</span>
+          <span>Azure SQL (data structures &amp; queries)</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="mt-0.5 text-emerald-400">✓</span>
-          <span>Leaflet kart for live sporing</span>
+          <span>Leaflet maps for live tracking</span>
         </li>
         <li class="flex items-start gap-2">
           <span class="mt-0.5 text-emerald-400">✓</span>
-          <span>Tailwind CSS (responsivt grensesnitt)</span>
+          <span>Tailwind CSS (responsive interface)</span>
         </li>
       </ul>
     </section>

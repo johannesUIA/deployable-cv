@@ -23,7 +23,7 @@ const timelineProjects = [
   {
     id: "unn",
     yearLabel: "2024-2025 · Summer job",
-    sideLabel: "JAN 2024",
+    sideLabel: "July 2024",
     partial: "src/components/projects/unn.html",
   },
   {
@@ -78,7 +78,7 @@ export async function initTimeline() {
 
   // List container
   const list = document.createElement("ol");
-  list.className = "relative pl-10 space-y-24"; // extra space between items
+  list.className = "relative pl-10 mt-40 space-y-24"; // bump margin so first project sits lower
   root.appendChild(list);
 
   // Build each project item
