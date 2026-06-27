@@ -9,6 +9,12 @@ const timelineProjects = [
     partial: "src/components/projects/github-stats.html",
   },
   {
+    id: "helsenordikt",
+    yearLabel: "2026 - SOC Analyst",
+    sideLabel: "2026",
+    partial: "src/components/projects/helsenordikt.html",
+  },
+  {
     id: "exitnode",
     yearLabel: "2025 · Bachelor project",
     sideLabel: "Jan 2025",
